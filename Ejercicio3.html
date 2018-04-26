@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="ES">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+		
+</head>
+<body>
+	<script>
+	// Como vemos en la página 8 de nuestros apuntes de clase
+	// Invocamos al método Ajax 
+	$.ajax({
+		url: 'alumnos.json',
+		dataType: 'json',
+		success: procesarRespuesta,
+		error: procesarError
+		});
+	//Definimos las funciones
+	function procesarRespuesta(datos, statusText, jqXHR) {
+		//Definimos las funciones necesarias
+		var alumnos =datos.alumnos;
+		var table = $('<table>');
+		var rowTitle = $('<tr><th>Nombre</th><th>Apellidos</th><th>Nota</th><th>Convocatoria</th></tr>');
+		//Añadimos a la tabla la fila
+		table.append(rowTitle);
+		//Definimos el bucle que servirá para recorrer la array de datos	
+		for (var i=0; i<alumnos.length; i++){
+			//Definimos las variables en la que almacenaremos los datos
+			var nombre = alumnos[i].nombre;
+			var apellido = alumnos[i].apellido;
+			var nota = alumnos[i].nota;
+			var convocatoria = alumnos[i].convocatoria;
+			//Definimos la fila en la que insertaremos los datos recogidos
+			var row = $('<tr>');
+			//Añadimos los datos dentro de la fila, con sus correspondientes td
+			row.html('<td>'+nombre+'</td><td>'+apellido+'</td><td>'+nota+'</td><td>'+convocatoria+'</td>');
+			//Agregamos la fila a la tabla
+			table.append(row);
+		}
+		//Agregamos la tabla al body
+		$('body').append(table);
+	
+	}
+	//En caso de que falle el procesamiento de datos, mostrará un error por consola
+	function procesarError(jqXHR, statusText, error) {
+		console.log(error, statusText);
+	}
+	</script>
+</body>
+</html>

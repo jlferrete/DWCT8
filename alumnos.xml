@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<alumnos>
+<alumno>
+<nombre>Ana</nombre>
+<apellido>Alvarez</apellido>
+<nota convocatoria="Febrero">8.3</nota>
+</alumno>
+<alumno>
+<nombre>Benito</nombre>
+<apellido>Begines</apellido>
+<nota convocatoria="Junio">6.7</nota>
+</alumno>
+<alumno>
+<nombre>Carlos</nombre>
+<apellido>Cid</apellido>
+<nota convocatoria="Junio">3.5</nota>
+</alumno>
+</alumnos>

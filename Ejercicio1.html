@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="ES">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+	<script>
+	// Como vemos en la página 2 de nuestros apuntes de clase
+	// Invocamos al método Ajax del objeto Jquery
+	$.ajax('alumnos.xml', {
+		success: procesarRespuesta,
+		error: procesarError
+	});
+	//Definimos las funciones
+	function procesarRespuesta(datos, statusText, jqXHR) {
+		//Definimos las funciones necesarias
+		var alumnos =$(datos).find('alumno');
+		var table = $('<table>');
+		var rowTitle = $('<tr><th>Nombre</th><th>Apellidos</th><th>Nota</th><th>Convocatoria</th></tr>');
+		//Añadimos a la tabla la fila
+		table.append(rowTitle);
+		//Realizamos la búsqueda en el DOM y ejecutamos la función	
+		alumnos.each(listar);
+		//Definimos qué hará nuestra función de búsqueda
+		function listar() {
+		var nombre = $(this).find('nombre').html();
+		var apellido = $(this).find('apellido').html();
+		var nota = $(this).find('nota').html();
+		var convocatoria =$(this).find('nota').attr('convocatoria');
+		
+		var row = $('<tr>');
+		row.html('<td>'+nombre+'</td><td>'+apellido+'</td><td>'+nota+'</td><td>'+convocatoria+'</td>');
+		table.append(row);
+				
+		}
+	
+	$('body').append(table);	
+		
+	}
+	function procesarError(jqXHR, statusText, error) {
+		console.log(error, statusText);
+	}
+	
+	
+	</script>
+	
+</head>
+<body>
+	
+</body>
+</html>

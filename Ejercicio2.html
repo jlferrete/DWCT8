@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="ES">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+		
+</head>
+<body>
+	<script>
+	// Como vemos en la página 7 de nuestros apuntes de clase
+	// Invocamos al método Ajax 
+	$.ajax({
+	url: 'alumnos.html',
+	dataType: 'html',
+	success: procesarRespuesta,
+	error: procesarError
+	});
+	//Definimos las funciones
+	function procesarRespuesta(datos, statusText, jqXHR) {
+		//Definimos las funciones necesarias
+		$datos = $(datos);
+		//Agregamos los datos al body
+		$('body').append($datos);	
+	}
+	//Si el procesamiento es erróneo, nos arroja el error por la consola
+	function procesarError(jqXHR, statusText, error) {
+		console.log(error, statusText);
+	}
+	
+	
+	</script>
+</body>
+</html>
